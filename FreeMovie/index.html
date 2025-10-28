@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Juwad Movie</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Inter:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css.css">
+  <link href="Pensive.png" rel="icon" type="image/x-icon">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="logo">
+        <i class="fas fa-film"></i>
+        <h1><span>Juwad</span> Movie</h1>
+      </div>
+      <div class="search-container">
+        <i class="fas fa-search"></i>
+        <input type="text" id="searchBox" placeholder="Search movies or shows..." aria-label="Search movies or shows">
+      </div>
+      <select id="seasonSelect" style="display: none;" aria-label="Select season"></select>
+      <select id="episodeSelect" style="display: none;" aria-label="Select episode"></select>
+    </header>
+    <main>
+      <section id="playerSection" style="display: none;">
+        <div class="player-container">
+          <h2 id="playerTitle"></h2>
+          <div class="video-wrapper">
+            <iframe id="player" allowfullscreen loading="lazy"></iframe>
+          </div>
+          <div id="episodePicker" class="episode-select"></div>
+        </div>
+      </section>
+      <div id="mainContent"></div>
+    </main>
+    <footer>
+      <div class="footer-content">
+        <h3>Credit</h3>
+        <p>Dibuat Oleh <strong>Ajwad</strong> Budak <strong>Kedah</strong></p>
+        <h3>Contact</h3>
+        <p>Tiktok: <a href="https://www.tiktok.com/@._.crxzy" target="_blank">@._.crxzy</a></p>
+        <p>© 2025 Ajwad Movie. All rights reserved.</p>
+      </div>
+    </footer>
+  </div>
+  <script src="js.js"></script>
+</body>
+</html>

@@ -1,0 +1,462 @@
+:root {
+    --black: #0a0a0a;
+    --dark-grey: #1a1a1a;
+    --grey: #333333;
+    --light-grey: #666666;
+    --white: #f5f5f5;
+    --accent: #9a9a9a;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--black);
+    color: var(--white);
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+.container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: rgba(10, 10, 10, 0.9);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    padding: 1rem 2rem;
+    transition: all 0.3s ease;
+}
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--white);
+}
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+.nav-link {
+    color: var(--light-grey);
+    text-decoration: none;
+    position: relative;
+    transition: color 0.3s ease;
+}
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--accent);
+    transition: width 0.3s ease;
+}
+.nav-link:hover, .nav-link.active {
+    color: var(--white);
+}
+.nav-link:hover::after, .nav-link.active::after {
+    width: 100%;
+}
+.lang-toggle {
+    display: flex;
+    align-items: center;
+}
+.lang-btn {
+    background: var(--dark-grey);
+    border: 1px solid var(--grey);
+    color: var(--white);
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+.lang-btn:hover {
+    background: var(--grey);
+    transform: translateY(-2px);
+}
+main {
+    flex: 1;
+    padding-top: 80px;
+}
+.section {
+    min-height: calc(100vh - 80px);
+    padding: 2rem;
+    display: none;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+.section.active {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    opacity: 1;
+}
+.hero {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+}
+.glitch {
+    font-size: 3.5rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    position: relative;
+    text-shadow: 0.05em 0 0 var(--accent), -0.05em -0.025em 0 var(--light-grey),
+                0.025em 0.05em 0 var(--grey);
+    animation: glitch 1s infinite;
+}
+.glitch::before,
+.glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+.glitch::before {
+    animation: glitch-1 0.5s infinite;
+    color: var(--accent);
+    z-index: -1;
+}
+.glitch::after {
+    animation: glitch-2 0.5s infinite;
+    color: var(--light-grey);
+    z-index: -2;
+}
+@keyframes glitch {
+    0%, 100% {
+        text-shadow: 0.05em 0 0 var(--accent), -0.05em -0.025em 0 var(--light-grey),
+                    0.025em 0.05em 0 var(--grey);
+    }
+    15% {
+        text-shadow: 0.05em 0 0 var(--accent), -0.05em -0.025em 0 var(--light-grey),
+                    0.025em 0.05em 0 var(--grey);
+    }
+    16% {
+        text-shadow: -0.05em -0.025em 0 var(--accent), 0.025em 0.025em 0 var(--light-grey),
+                    -0.05em -0.05em 0 var(--grey);
+    }
+    49% {
+        text-shadow: -0.05em -0.025em 0 var(--accent), 0.025em 0.025em 0 var(--light-grey),
+                    -0.05em -0.05em 0 var(--grey);
+    }
+    50% {
+        text-shadow: 0.025em 0.05em 0 var(--accent), 0.05em 0 0 var(--light-grey),
+                    0 -0.05em 0 var(--grey);
+    }
+    99% {
+        text-shadow: 0.025em 0.05em 0 var(--accent), 0.05em 0 0 var(--light-grey),
+                    0 -0.05em 0 var(--grey);
+    }
+}
+@keyframes glitch-1 {
+    0%, 100% {
+        clip: rect(42px, 9999px, 44px, 0);
+        transform: skew(0.5deg);
+    }
+    5% {
+        clip: rect(12px, 9999px, 59px, 0);
+        transform: skew(0.5deg);
+    }
+    10% {
+        clip: rect(48px, 9999px, 18px, 0);
+        transform: skew(0.5deg);
+    }
+    15% {
+        clip: rect(42px, 9999px, 73px, 0);
+        transform: skew(0.5deg);
+    }
+    20% {
+        clip: rect(63px, 9999px, 27px, 0);
+        transform: skew(0.5deg);
+    }
+    25% {
+        clip: rect(34px, 9999px, 55px, 0);
+        transform: skew(0.5deg);
+    }
+    30% {
+        clip: rect(86px, 9999px, 73px, 0);
+        transform: skew(0.5deg);
+    }
+    35% {
+        clip: rect(20px, 9999px, 20px, 0);
+        transform: skew(0.5deg);
+    }
+    40% {
+        clip: rect(26px, 9999px, 60px, 0);
+        transform: skew(0.5deg);
+    }
+    45% {
+        clip: rect(25px, 9999px, 66px, 0);
+        transform: skew(0.5deg);
+    }
+    50% {
+        clip: rect(57px, 9999px, 98px, 0);
+        transform: skew(0.5deg);
+    }
+    55% {
+        clip: rect(5px, 9999px, 46px, 0);
+        transform: skew(0.5deg);
+    }
+    60% {
+        clip: rect(82px, 9999px, 31px, 0);
+        transform: skew(0.5deg);
+    }
+    65% {
+        clip: rect(54px, 9999px, 27px, 0);
+        transform: skew(0.5deg);
+    }
+    70% {
+        clip: rect(28px, 9999px, 99px, 0);
+        transform: skew(0.5deg);
+    }
+    75% {
+        clip: rect(45px, 9999px, 69px, 0);
+        transform: skew(0.5deg);
+    }
+    80% {
+        clip: rect(23px, 9999px, 85px, 0);
+        transform: skew(0.5deg);
+    }
+    85% {
+        clip: rect(54px, 9999px, 84px, 0);
+        transform: skew(0.5deg);
+    }
+    90% {
+        clip: rect(45px, 9999px, 47px, 0);
+        transform: skew(0.5deg);
+    }
+    95% {
+        clip: rect(37px, 9999px, 20px, 0);
+        transform: skew(0.5deg);
+    }
+}
+@keyframes glitch-2 {
+    0%, 100% {
+        clip: rect(65px, 9999px, 100px, 0);
+        transform: skew(0.5deg);
+    }
+    5% {
+        clip: rect(52px, 9999px, 74px, 0);
+        transform: skew(0.5deg);
+    }
+    10% {
+        clip: rect(79px, 9999px, 85px, 0);
+        transform: skew(0.5deg);
+    }
+    15% {
+        clip: rect(75px, 9999px, 5px, 0);
+        transform: skew(0.5deg);
+    }
+    20% {
+        clip: rect(67px, 9999px, 61px, 0);
+        transform: skew(0.5deg);
+    }
+    25% {
+        clip: rect(14px, 9999px, 79px, 0);
+        transform: skew(0.5deg);
+    }
+    30% {
+        clip: rect(1px, 9999px, 66px, 0);
+        transform: skew(0.5deg);
+    }
+    35% {
+        clip: rect(86px, 9999px, 30px, 0);
+        transform: skew(0.5deg);
+    }
+    40% {
+        clip: rect(23px, 9999px, 98px, 0);
+        transform: skew(0.5deg);
+    }
+    45% {
+        clip: rect(85px, 9999px, 72px, 0);
+        transform: skew(0.5deg);
+    }
+    50% {
+        clip: rect(71px, 9999px, 75px, 0);
+        transform: skew(0.5deg);
+    }
+    55% {
+        clip: rect(2px, 9999px, 48px, 0);
+        transform: skew(0.5deg);
+    }
+    60% {
+        clip: rect(30px, 9999px, 16px, 0);
+        transform: skew(0.5deg);
+    }
+    65% {
+        clip: rect(59px, 9999px, 50px, 0);
+        transform: skew(0.5deg);
+    }
+    70% {
+        clip: rect(41px, 9999px, 62px, 0);
+        transform: skew(0.5deg);
+    }
+    75% {
+        clip: rect(2px, 9999px, 82px, 0);
+        transform: skew(0.5deg);
+    }
+    80% {
+        clip: rect(47px, 9999px, 73px, 0);
+        transform: skew(0.5deg);
+    }
+    85% {
+        clip: rect(3px, 9999px, 27px, 0);
+        transform: skew(0.5deg);
+    }
+    90% {
+        clip: rect(26px, 9999px, 55px, 0);
+        transform: skew(0.5deg);
+    }
+    95% {
+        clip: rect(42px, 9999px, 97px, 0);
+        transform: skew(0.5deg);
+    }
+}
+.subtitle {
+    margin: 1rem 0 3rem;
+    color: var(--light-grey);
+    font-size: 1.2rem;
+}
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+.social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    background: var(--dark-grey);
+    border-radius: 50%;
+    color: var(--white);
+    font-size: 1.5rem;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+.social-link:hover {
+    background: var(--grey);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.3);
+}
+.section-title {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    color: var(--white);
+}
+.projects-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.project-card {
+    background: var(--dark-grey);
+    border-radius: 8px;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: 1px solid var(--grey);
+    width: 300px;
+    max-width: 100%;
+}
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    border-color: var(--accent);
+}
+.project-title {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--white);
+}
+.project-description {
+    color: var(--light-grey);
+    margin-bottom: 1rem;
+}
+.project-tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+.tech-tag {
+    background: var(--grey);
+    color: var(--white);
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+}
+.contact-container {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+}
+.contact-container p {
+    margin-bottom: 2rem;
+    color: var(--light-grey);
+}
+.contact-links {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+.contact-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background: var(--dark-grey);
+    border-radius: 4px;
+    color: var(--white);
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+.contact-link:hover {
+    background: var(--grey);
+    transform: translateY(-3px);
+}
+footer {
+    background-color: var(--dark-grey);
+    padding: 1rem;
+    text-align: center;
+    color: var(--light-grey);
+}
+@media (max-width: 768px) {
+    .nav-links {
+        gap: 1rem;
+    }
+    .glitch {
+        font-size: 2.5rem;
+    }
+    .project-card {
+        width: 100%;
+    }
+    .contact-links {
+        flex-direction: column;
+        align-items: center;
+    }
+}
