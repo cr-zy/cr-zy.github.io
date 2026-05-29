@@ -1,0 +1,27 @@
+body {
+    font-family: 'Courier New', Courier, monospace, system-ui;
+    background-color: #020204;
+    color: #e4e4e7;
+}
+.bounce-viewport {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    background-image: 
+        linear-gradient(to right, rgba(24, 24, 27, 0.2) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(24, 24, 27, 0.2) 1px, transparent 1px);
+    background-size: 40px 40px;
+}
+.scanlines {
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.02), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.02));
+    background-size: 100% 4px, 6px 100%;
+}
+#bouncingLogo {
+    position: absolute;
+    will-change: transform;
+    white-space: nowrap;
+    user-select: none;
+    font-weight: 900;
+    line-height: 1;
+    transition: color 0.05s ease;
+}

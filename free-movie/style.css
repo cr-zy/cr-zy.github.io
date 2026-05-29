@@ -1,0 +1,13 @@
+body {
+    font-family: 'Courier New', Courier, monospace, system-ui;
+    background-color: #09090b;
+    color: #f4f4f5;
+}
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: #09090b; }
+::-webkit-scrollbar-thumb { background: #27272a; }
+::-webkit-scrollbar-thumb:hover { background: #3f3f46; }
+.terminal-panel {
+    background-color: #09090b;
+    border: 1px solid #27272a;
+}

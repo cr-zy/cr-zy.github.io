@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="../icon.png">
+    <link rel="stylesheet" href="./style.css">
+    <title>CRXZY // JUWAD MOVIE</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body class="min-h-screen flex flex-col antialiased selection:bg-zinc-800 selection:text-white relative overflow-x-hidden">
+    <div class="scanlines absolute inset-0 pointer-events-none z-50"></div>
+    <header class="w-full bg-zinc-950/80 backdrop-blur-md border-b border-zinc-900 px-4 py-3 flex items-center justify-between sticky top-0 z-40 font-mono text-xs tracking-widest">
+        <div class="flex items-center space-x-3">
+            <a href="./crxzy.html" class="font-bold text-white uppercase hover:text-zinc-400 transition">CRXZY</a>
+        </div>
+    </header>
+    <div class="flex-1 max-w-4xl w-full mx-auto p-4 md:p-8 flex flex-col gap-6 font-mono">
+        <div class="border border-zinc-900 bg-zinc-950 p-4 flex justify-between items-center">
+            <div>
+                <h2 class="text-sm font-bold text-white tracking-widest uppercase">COLOR PICK</h2>
+                <p class="text-[10px] text-zinc-500 uppercase mt-0.5">FUCKING BULLSHIT PROJECT</p>
+            </div>
+            <div id="hexBadge" class="text-xs bg-zinc-900 border border-zinc-800 text-emerald-400 font-bold px-3 py-1.5 tracking-wider">#3B82F6</div>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-stretch">
+            <div class="border border-zinc-900 bg-zinc-950 p-4 md:col-span-5 flex flex-col gap-4">
+                <span class="text-[10px] text-zinc-500 uppercase tracking-wider block">PAD</span>
+                
+                <div class="relative w-full aspect-square bg-zinc-900 border border-zinc-800 cursor-crosshair group overflow-hidden">
+                    <canvas id="colorCanvas" class="w-full h-full block"></canvas>
+                    <div id="canvasMarker" class="absolute w-3 h-3 border-2 border-white pointer-events-none mix-blend-difference -translate-x-1.5 -translate-y-1.5"></div>
+                </div>
+                <div class="relative w-full h-6 bg-zinc-900 border border-zinc-800 cursor-ew-resize">
+                    <canvas id="hueCanvas" class="w-full h-full block"></canvas>
+                    <div id="hueMarker" class="absolute top-0 bottom-0 w-1.5 bg-white border border-black pointer-events-none -translate-x-0.75"></div>
+                </div>
+                <div class="grid grid-cols-2 gap-2 mt-2">
+                    <div class="flex flex-col gap-1">
+                        <span class="text-[9px] text-zinc-600 uppercase">[CURRENT COLOR]</span>
+                        <div id="previewBlock" class="w-full h-16 border border-zinc-800 bg-blue-500 transition-colors duration-75"></div>
+                    </div>
+                    <div class="flex flex-col gap-1">
+                        <span class="text-[9px] text-zinc-600 uppercase">[HEX STRING]</span>
+                        <button onclick="copyStringToClipboard('hexInput')" class="w-full h-16 border border-zinc-900 bg-zinc-900/40 text-xs font-bold text-zinc-400 hover:bg-zinc-900 hover:text-white transition duration-150 flex flex-col justify-center items-center gap-1 cursor-pointer group">
+                            <span id="hexLabel">#3B82F6</span>
+                            <span class="text-[8px] text-zinc-600 group-hover:text-zinc-400 font-normal uppercase">[CLICK TO COPY]</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="border border-zinc-900 bg-zinc-950 p-4 md:col-span-7 flex flex-col justify-between gap-6">
+                <div class="space-y-4">
+                    <span class="text-[10px] text-zinc-500 uppercase tracking-wider block">COLOR ADJUSTMENTS</span>
+                    <div class="bg-black/40 border border-zinc-900/60 p-3 space-y-3">
+                        <div class="text-[10px] text-zinc-400 font-bold tracking-widest uppercase flex justify-between">
+                            <span>RGB CHANNELS</span>
+                            <span id="rgbLabelDisplay" class="text-zinc-500 font-normal text-[9px]">R:59 G:130 B:246</span>
+                        </div>
+                        <div class="space-y-2 text-xs">
+                            <div class="flex items-center gap-3">
+                                <span class="w-4 text-zinc-500 text-left text-[10px]">R:</span>
+                                <input type="range" id="sliderR" min="0" max="255" value="59" class="flex-1">
+                                <input type="text" id="inputR" value="59" class="w-10 bg-zinc-900 border border-zinc-800 text-center py-0.5 text-[11px] focus:outline-none focus:border-zinc-600 text-zinc-300 font-mono">
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <span class="w-4 text-zinc-500 text-left text-[10px]">G:</span>
+                                <input type="range" id="sliderG" min="0" max="255" value="130" class="flex-1">
+                                <input type="text" id="inputG" value="130" class="w-10 bg-zinc-900 border border-zinc-800 text-center py-0.5 text-[11px] focus:outline-none focus:border-zinc-600 text-zinc-300 font-mono">
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <span class="w-4 text-zinc-500 text-left text-[10px]">B:</span>
+                                <input type="range" id="sliderB" min="0" max="255" value="246" class="flex-1">
+                                <input type="text" id="inputB" value="246" class="w-10 bg-zinc-900 border border-zinc-800 text-center py-0.5 text-[11px] focus:outline-none focus:border-zinc-600 text-zinc-300 font-mono">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-black/40 border border-zinc-900/60 p-3 space-y-3">
+                        <div class="text-[10px] text-zinc-400 font-bold tracking-widest uppercase flex justify-between">
+                            <span>HSV SPECTRUM</span>
+                            <span id="hsvLabelDisplay" class="text-zinc-500 font-normal text-[9px]">H:217° S:76% V:96%</span>
+                        </div>
+                        <div class="space-y-2 text-xs">
+                            <div class="flex items-center gap-3">
+                                <span class="w-4 text-zinc-500 text-left text-[10px]">H:</span>
+                                <input type="range" id="sliderH" min="0" max="360" value="217" class="flex-1">
+                                <input type="text" id="inputH" value="217" class="w-10 bg-zinc-900 border border-zinc-800 text-center py-0.5 text-[11px] focus:outline-none focus:border-zinc-600 text-zinc-300 font-mono">
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <span class="w-4 text-zinc-500 text-left text-[10px]">S:</span>
+                                <input type="range" id="sliderS" min="0" max="100" value="76" class="flex-1">
+                                <input type="text" id="inputS" value="76" class="w-10 bg-zinc-900 border border-zinc-800 text-center py-0.5 text-[11px] focus:outline-none focus:border-zinc-600 text-zinc-300 font-mono">
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <span class="w-4 text-zinc-500 text-left text-[10px]">V:</span>
+                                <input type="range" id="sliderV" min="0" max="100" value="96" class="flex-1">
+                                <input type="text" id="inputV" value="96" class="w-10 bg-zinc-900 border border-zinc-800 text-center py-0.5 text-[11px] focus:outline-none focus:border-zinc-600 text-zinc-300 font-mono">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="space-y-2 pt-4 border-t border-zinc-900">
+                    <span class="text-[9px] text-zinc-600 uppercase tracking-widest block">OUTPUT</span>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+                        <div>
+                            <label class="text-[9px] text-zinc-500 block mb-1">HEX VALUE</label>
+                            <input type="text" id="hexInput" value="#3b82f6" class="w-full bg-zinc-900 border border-zinc-800 text-zinc-100 p-2 text-xs font-mono uppercase focus:outline-none focus:border-zinc-600 rounded-none">
+                        </div>
+                        <div>
+                            <label class="text-[9px] text-zinc-500 block mb-1">RGB STRING</label>
+                            <input type="text" id="rgbStringInput" readonly value="rgb(59,130,246)" class="w-full bg-zinc-900/50 border border-zinc-900 text-zinc-400 p-2 text-xs font-mono focus:outline-none rounded-none select-all">
+                        </div>
+                        <div>
+                            <label class="text-[9px] text-zinc-500 block mb-1">HSV STRING</label>
+                            <input type="text" id="hsvStringInput" readonly value="hsv(217,76,96)" class="w-full bg-zinc-900/50 border border-zinc-900 text-zinc-400 p-2 text-xs font-mono focus:outline-none rounded-none select-all">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="./script.js"></script>
+</body>
+
+</html>

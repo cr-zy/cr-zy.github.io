@@ -1,0 +1,37 @@
+body {
+    font-family: 'Courier New', Courier, monospace, system-ui;
+    background-color: #050507;
+    color: #e4e4e7;
+}
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: #050507; }
+::-webkit-scrollbar-thumb { background: #18181b; border-radius: 0px !important; }
+::-webkit-scrollbar-thumb:hover { background: #27272a; }
+input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    background: #18181b;
+    height: 6px;
+    border: 1px solid #27272a;
+}
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 12px;
+    height: 18px;
+    background: #f4f4f5;
+    border: 1px solid #050507;
+    cursor: ew-resize;
+}
+input[type="range"]::-moz-range-thumb {
+    width: 12px;
+    height: 18px;
+    background: #f4f4f5;
+    border: 1px solid #050507;
+    cursor: ew-resize;
+    border-radius: 0px;
+}
+.scanlines {
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.02), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.02));
+    background-size: 100% 4px, 6px 100%;
+}
